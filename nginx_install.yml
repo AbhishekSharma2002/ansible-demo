@@ -40,12 +40,14 @@
       - name: Install Cronjob
         yum: 
           name: cronie
-          state: present 
+          state: present
+        when: ansible_distribution == "Amazon"
       
       - name: Start Nginx
         service: 
           name: nginx
           state: started 
           enabled: true
+        when: ansible_distribution == "Amazon"
 
 # ansible-playbook -i inventory.ini nginx_install.yml
