@@ -15,7 +15,7 @@
 
       - name: Install apache webserver on Al2
         yum:
-          name: "{{ package_name['Amazon'} }}"
+          name: "{{ package_name['Amazon'] }}"
           state: present
         when: ansible_distribution == "Amazon"
 
