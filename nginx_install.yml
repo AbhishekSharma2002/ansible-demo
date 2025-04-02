@@ -3,6 +3,11 @@
     hosts: all
     become: true
 
+    vars: 
+      package_name: 
+        Ubuntu: apache2
+        Amazon: httpd
+
     tasks: 
 
       - name: Prnting OS versions
@@ -14,11 +19,24 @@
           name: nginx
           state: present
         when: ansible_distribution == "Amazon"
+<<<<<<< HEAD
+=======
+
+      - name: Install Nginx on Ubuntu
+        apt:
+          name: nginx
+          state: present
+        when: ansible_distribution == "Ubuntu"
+>>>>>>> origin/master
 
       - name: Install Cronjob
         yum: 
           name: cronie
+<<<<<<< HEAD
           state: present 
+=======
+          state: present
+>>>>>>> origin/master
         when: ansible_distribution == "Amazon"
       
       - name: Start Nginx
