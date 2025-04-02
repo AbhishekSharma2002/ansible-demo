@@ -9,13 +9,9 @@
         Amazon: httpd
 
     tasks: 
-      - name: Printing OS version
-        debug:
-          msg: "This OS it {{ ansible_distribution }}"
-
-      - name: Install apache webserver on Al2
-        yum:
-          name: "{{ package_name['Amazon'} }}"
+      - name: Install packages on Ubuntu
+        apt:
+          name: "{{  }}"
           state: present
         when: ansible_distribution == "Amazon"
 
