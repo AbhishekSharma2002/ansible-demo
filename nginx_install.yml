@@ -1,6 +1,6 @@
 ---
   - name: Installing Nignx and cronjob configuring it 
-    hosts: webservers
+    hosts: all
     become: true
 
     vars: 
