@@ -1,33 +1,34 @@
 ---
-  - name: Installing Multiple packages
-    hosts: all
-    become: true
+- name: Installing Multiple Packages
+  hosts: all
+  become: true
 
-    vars: 
-      package_name: 
-        Ubuntu: apache2
-        Amazon: httpd
+  vars: 
+    package_name: 
+      Ubuntu: apache2
+      Amazon: httpd
 
-    tasks: 
-      - name: Install packages on Ubuntu
-        apt:
-          name: "{{ item }}"
-          state: present
-        with_item: 
-          - nginx
-          - apache2
-          - git
-          - nodejs
-        when: ansible_distribution == "Ubuntu"
+  tasks: 
+    - name: Install packages on Ubuntu
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items: 
+        - nginx
+        - apache2
+        - git
+        - nodejs
+      when: ansible_distribution == "Ubuntu"
 
-      - name: Install packages on Amazon AL2
-        yum:
-          name: "{{ item }}"
-          state: present
-        with_item: 
-          - nginx
-          - apache2
-          - git
-          - nodejs
-        when: ansible_distribution == "Amazon"
+    - name: Install packages on Amazon AL2
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: 
+        - nginx
+        - httpd
+        - git
+        - nodejs
+      when: ansible_distribution == "Amazon"
+
 # ansible-playbook -i inventory.ini install_multiple_packages_with_loop.yml
